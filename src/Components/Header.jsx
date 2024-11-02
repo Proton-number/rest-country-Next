@@ -11,7 +11,7 @@ export default function Header() {
     <AppBar
       sx={{
         backgroundColor: darkMode ? "hsl(210, 22%, 22%)" : "hsl(0, 0%, 100%)",
-        color: darkMode ? "hsl(0, 0%, 100%)" : "hsl(210, 22%, 22%)" ,
+        color: darkMode ? "hsl(0, 0%, 100%)" : "hsl(210, 22%, 22%)",
       }}
     >
       <Toolbar
@@ -22,17 +22,17 @@ export default function Header() {
         <Typography>Where in the world?</Typography>
 
         <Stack direction="row" sx={{ alignItems: "center" }}>
-          {darkMode ? (
+          {!darkMode ? (
             <>
-              <IconButton onClick={() => setDarkMode(false)}>
-                <DarkModeIcon sx={{ color: "white" }} />
+              <IconButton onClick={() => setDarkMode(true)}>
+                <DarkModeIcon sx={{  color: "black" }} />
               </IconButton>
               <Typography>Dark Mode</Typography>
             </>
           ) : (
             <>
-              <IconButton onClick={() => setDarkMode(true)}>
-                <LightModeIcon sx={{ color: "black" }} />
+              <IconButton onClick={() => setDarkMode(false)}>
+                <LightModeIcon sx={{color: "white",}} />
               </IconButton>
               <Typography>Light Mode</Typography>
             </>

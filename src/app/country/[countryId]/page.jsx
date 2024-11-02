@@ -3,7 +3,7 @@
 import { Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
-export default function Page() {
+export default function Info() {
   return (
     <>
       <motion.h2
