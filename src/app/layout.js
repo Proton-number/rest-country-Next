@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
       <body>
         <Header />
         <Box
-          sx={{ paddingTop: "100px", maxWidth: { sm: "90vw" }, margin: "auto" }}
+          sx={{ paddingTop: "100px", maxWidth: { sm: "90vw" }, margin: "auto", height:"100dvh" }}
         >
           <BackgroundSetter />
           {children}

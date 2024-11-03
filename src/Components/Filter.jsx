@@ -39,12 +39,14 @@ function Filter() {
 
   return (
     <Stack
-      direction="row"
+      direction={{ sm: "row" }}
       sx={{
         justifyContent: "space-between",
+        paddingLeft: { xs: "40px", sm: 0 },
       }}
+      spacing={{ xs: 4, sm: 0 }}
     >
-      <Paper elevation={4}>
+      <Paper elevation={4} sx={{ width: "fit-content" }}>
         <TextField
           value={searchedCountry || ""}
           onChange={(e) => setSearchedCountry(e.target.value)}
@@ -71,7 +73,7 @@ function Filter() {
             ),
             endAdornment: (
               <InputAdornment position="start">
-                {!searchedCountry ? null : (
+                {searchedCountry && (
                   <IconButton onClick={() => setSearchedCountry("")}>
                     <CloseIcon
                       sx={{ color: darkMode ? "white" : "hsl(210, 22%, 22%)k" }}
@@ -112,7 +114,7 @@ function Filter() {
             sx={{
               padding: "20px",
               textAlign: "left",
-              width: "120px",
+              width: { xs: "140px", sm: "220px", lg: "250px" },
               color: darkMode ? "white" : "hsl(210, 22%, 22%)",
               backgroundColor: !darkMode ? "white" : "hsl(210, 22%, 22%)",
             }}
