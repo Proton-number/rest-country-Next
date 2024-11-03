@@ -32,7 +32,6 @@ export const appStore = create((set) => ({
   darkMode: true,
   setDarkMode: (darkMode) => set(() => ({ darkMode })),
 
-  countries: null,
   error: null,
   fetchCountries: async () => {
     try {
@@ -42,9 +41,17 @@ export const appStore = create((set) => ({
       const data = await response.json();
       const transformedData = transformCountryData(data);
 
-      set({ countries: transformedData, error: null });
+      set({ error: null, query: transformedData });
     } catch (error) {
       set({ error: error.message });
     }
   },
+
+  query: [],
+  setQuery: (query) => set(() => ({ query })),
+  searchedCountry: "",
+  setSearchedCountry: (searchedCountry) => set(() => ({ searchedCountry })),
+  selectedContinent: null,
+  setSelectedContinent: (selectedContinent) =>
+    set(() => ({ selectedContinent })),
 }));

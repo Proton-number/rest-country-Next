@@ -14,9 +14,15 @@ import SearchIcon from "@mui/icons-material/Search";
 import { appStore } from "./Store/appStore";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useState } from "react";
+import CloseIcon from "@mui/icons-material/Close";
 
 function Filter() {
-  const { darkMode } = appStore();
+  const {
+    darkMode,
+    searchedCountry,
+    setSearchedCountry,
+    setSelectedContinent,
+  } = appStore();
   const [anchorEl1, setAnchorEl1] = useState(null);
 
   const continent = [
@@ -25,6 +31,11 @@ function Filter() {
     { id: 3, name: "Europe" },
     { id: 4, name: "Oceania" },
   ];
+
+  const handleContinentSelect = (continent) => {
+    setSelectedContinent(continent);
+    setAnchorEl1(null); // Close the popover
+  };
 
   return (
     <Stack
@@ -35,6 +46,8 @@ function Filter() {
     >
       <Paper elevation={4}>
         <TextField
+          value={searchedCountry || ""}
+          onChange={(e) => setSearchedCountry(e.target.value)}
           placeholder="Search for a country...."
           sx={{ width: { lg: "350px" } }}
           InputProps={{
@@ -54,6 +67,17 @@ function Filter() {
                     sx={{ color: darkMode ? "white" : "hsl(210, 22%, 22%)k" }}
                   />
                 </IconButton>
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <InputAdornment position="start">
+                {!searchedCountry ? null : (
+                  <IconButton onClick={() => setSearchedCountry("")}>
+                    <CloseIcon
+                      sx={{ color: darkMode ? "white" : "hsl(210, 22%, 22%)k" }}
+                    />
+                  </IconButton>
+                )}
               </InputAdornment>
             ),
           }}
@@ -95,7 +119,11 @@ function Filter() {
           >
             <Stack spacing={1}>
               {continent.map((data) => (
-                <Typography key={data.id} sx={{ cursor: "pointer" }}>
+                <Typography
+                  onClick={() => handleContinentSelect(data.name)}
+                  key={data.id}
+                  sx={{ cursor: "pointer" }}
+                >
                   {data.name}
                 </Typography>
               ))}
