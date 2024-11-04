@@ -153,6 +153,7 @@ export default function Info() {
                     padding: "5px 10px",
                     color: darkMode ? "white" : "hsl(210, 22%, 22%)",
                     bgcolor: darkMode ? "hsl(210, 22%, 22%)" : "white",
+                    cursor: "pointer",
                   }}
                 >
                   {border}
